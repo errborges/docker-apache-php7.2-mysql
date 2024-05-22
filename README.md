@@ -36,3 +36,6 @@ version: "3"
 
 command: ['--default-authentication-plugin=mysql_native_password','--character-set-server=utf8mb4', '--collation-server=utf8mb4_general_ci']
 restart: always
+
+instalando extensoes
+docker compose exec php docker-php-ext-install pdo pdo_mysql mysqli

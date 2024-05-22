@@ -17,14 +17,14 @@ services:
     volumes:
       - /var/lib/mysql
     environment:
-      - MYSQL_DATABASE: eborges
-      - MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: eborges
+      MYSQL_ROOT_PASSWORD: root
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
     environment:
-      - MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
     ports:
       - "8080:80"   
   
