@@ -1,25 +1,30 @@
-version: "3"
-
 services:
-  web:
-    image: webdevops/php-apache:alpine-php7
+  php:
+    image: php:7.4-apache
+    container_name: php
     ports:
       - "4500:80"
     volumes:
-      - ./www:/app
+      - /home/arkantos/docker-apache-php7.2-mysql/www:/var/www/html
+    links:
+      - db
 
   db:
-    image: mysql
-    command: ['--default-authentication-plugin=mysql_native_password','--character-set-server=utf8mb4', '--collation-server=utf8mb4_general_ci']
-    restart: always
+    image: mysql:latest
+    container_name: mysql
+    ports:
+      - "3333:3306"
+    volumes:
+      - /var/lib/mysql
     environment:
-      MYSQL_DATABASE: devbuild
-      MYSQL_ROOT_PASSWORD: root
-        
+      - MYSQL_DATABASE: eborges
+      - MYSQL_ROOT_PASSWORD: root
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      - MYSQL_ROOT_PASSWORD: root
     ports:
       - "8080:80"   
   
